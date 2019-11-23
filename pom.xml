@@ -242,7 +242,13 @@
 			<scope>system</scope>
 			<systemPath>C:\Program Files\Java\jdk1.8.0_172\lib\tools.jar</systemPath>
 		</dependency>
-	</dependencies>
+	<dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-json</artifactId>
+            <version>${mule.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 	<repositories>
 		<repository>

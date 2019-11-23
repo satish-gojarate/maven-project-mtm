@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw"
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -11,7 +11,8 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
-http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
 	<http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration" />
 	<db:mysql-config name="MySQL_Configuration" host="localhost" port="3306" user="root" password="root@123" database="training"
 		doc:name="MySQL Configuration" />
@@ -26,6 +27,8 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
 			<db:parameterized-query><![CDATA[SELECT * FROM FLIGHTS]]></db:parameterized-query>
 		</db:select>
 		<object-to-string-transformer doc:name="Object to String" />
+        <!-- <properties-transformer doc:name="Property"/> -->
+        <set-property propertyName="#['Content-Type']" value="#['application/json']" doc:name="Property"/>
 		<jms:outbound-endpoint connector-ref="Active_MQ" doc:name="Active_MQ" queue="flights">
 		</jms:outbound-endpoint>
 		<logger message="#[message.payload]" level="INFO" doc:name="Logger" />
