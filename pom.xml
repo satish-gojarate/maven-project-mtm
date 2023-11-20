@@ -14,7 +14,7 @@
 
 		<mule.version>3.9.2</mule.version>
 		<mule.tools.version>1.7</mule.tools.version>
-		<derby.version>10.15.1.3</derby.version>
+		<derby.version>10.17.1.0</derby.version>
 		<mysql.version>8.0.18</mysql.version>
 		<!-- <ActiveMQ-client.version>5.15.10</ActiveMQ-client.version> -->
 		<!-- <ActiveMQ-broker.version>5.15.10</ActiveMQ-broker.version> -->
@@ -198,7 +198,7 @@
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
-			<version>10.15.1.3</version>
+			<version>10.17.1.0</version>
 			<type>POM</type>
 		</dependency>
 		<!-- non-mule dependencies -->
